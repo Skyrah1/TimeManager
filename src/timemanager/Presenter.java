@@ -5,6 +5,8 @@
  */
 package timemanager;
 
+import timemanager.ui.UiHandler;
+
 /**
  * Updates UI based on existing data, and updates data based on
  * user input
@@ -14,7 +16,8 @@ package timemanager;
 public class Presenter {
     
     public void test(){
-	
+	FileHandler fileHandler = new FileHandler("src/csv");
+	UiHandler uiHandler = new UiHandler();
     }
     
 }
