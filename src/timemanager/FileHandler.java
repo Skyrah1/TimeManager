@@ -66,7 +66,7 @@ public class FileHandler {
     
     /**
      * Note: the field in the first record in the CSV file will ALWAYS be an
-     * unparseable date for some reason
+     * unparseable date (reserved for headers
      * 
      * @param dateString
      * @return 
