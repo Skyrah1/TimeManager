@@ -18,6 +18,7 @@ public class Presenter {
     public void test(){
 	FileHandler fileHandler = new FileHandler("src/csv");
 	UiHandler uiHandler = new UiHandler();
+	fileHandler.test();
     }
     
 }
