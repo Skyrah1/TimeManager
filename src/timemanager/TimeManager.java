@@ -12,11 +12,11 @@ package timemanager;
 public class TimeManager {
 
     /**
-     * @param args the command line arguments
+     * Main class
      */
     public static void main(String[] args) {
 	// TODO code application logic here
-	Manager manager = new Manager();
+	Presenter manager = new Presenter();
     }
     
 }

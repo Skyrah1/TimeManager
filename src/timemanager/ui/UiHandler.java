@@ -6,8 +6,8 @@
 package timemanager.ui;
 
 /**
- *
- * @author ASUS
+ * Handles the creation and updating of visual elements
+ * @author Yek
  */
 public class UiHandler {
     

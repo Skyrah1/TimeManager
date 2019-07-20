@@ -6,9 +6,15 @@
 package timemanager;
 
 /**
- *
- * @author ASUS
+ * Updates UI based on existing data, and updates data based on
+ * user input
+ * Creates an instance of FileHandler and UiHandler
+ * @author Yek
  */
-public class FileHander {
+public class Presenter {
+    
+    public void test(){
+	
+    }
     
 }

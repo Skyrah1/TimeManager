@@ -6,8 +6,8 @@
 package timemanager.ui;
 
 /**
- *
- * @author ASUS
+ * The main display window, used to provide reminders
+ * @author Yek
  */
 public class DisplayWindow {
     

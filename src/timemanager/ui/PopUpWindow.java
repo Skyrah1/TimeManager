@@ -6,8 +6,8 @@
 package timemanager.ui;
 
 /**
- *
- * @author ASUS
+ * A pop-up window for when the user wants to edit their schedule
+ * @author Yek
  */
 public class PopUpWindow {
     

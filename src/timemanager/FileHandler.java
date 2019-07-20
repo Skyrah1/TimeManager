@@ -6,13 +6,9 @@
 package timemanager;
 
 /**
- *
- * @author ASUS
+ * Reads/writes CSV files from/to a designated path
+ * @author Yek
  */
-public class Manager {
-    
-    public void test(){
-	
-    }
+public class FileHandler {
     
 }
