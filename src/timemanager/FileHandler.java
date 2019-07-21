@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Optional;
+import java.util.TreeMap;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -34,7 +35,7 @@ public class FileHandler {
     }
     
     public void test(){
-	Hashtable<Date, String> schedule = readFile("test.csv");
+	TreeMap<Date, String> schedule = readFile("test.csv");
 	try {
 	    System.out.printf("%s\n", schedule.toString());
 	} catch (Exception e){
@@ -43,9 +44,9 @@ public class FileHandler {
 	
     }
     
-    public Hashtable<Date, String> readFile(String file){
+    public TreeMap<Date, String> readFile(String file){
 	System.out.println("Reading file...");
-	Hashtable<Date,String> schedule = new Hashtable<>();
+	TreeMap<Date,String> schedule = new TreeMap<>();
 	try {
 	    FileInputStream inputStream = new FileInputStream(path +  "/" + file);
 	    InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
