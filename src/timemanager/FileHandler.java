@@ -5,11 +5,13 @@
  */
 package timemanager;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import org.apache.commons.csv.CSVParser;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 import org.apache.commons.csv.CSVFormat;
@@ -62,6 +65,7 @@ public class FileHandler {
 		    schedule.put(date.get(), record.get(1));
 		}
 	    }
+	    parser.close();
 	    reader.close();
 	} catch (Exception e){
 	    
@@ -75,12 +79,11 @@ public class FileHandler {
 	    //Create a new file if it doesn't exist, otherwise do nothing
 	    File f = new File(path + "/" + file);
 	    f.createNewFile();
-	    
-	    FileOutputStream outputStream = new FileOutputStream(path + "/" + file);
-	    OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
-	    CSVPrinter printer = new CSVPrinter(writer, CSVFormat.EXCEL);
-	    //do stuff
-	    
+	    BufferedWriter writer = new BufferedWriter(new FileWriter(f));
+	    writer.write("Time,Activity\n");
+	    for (Map.Entry<Date, String> entry : schedule.entrySet()){
+		//do stuff
+	    }
 	    writer.close();
 	} catch (Exception e){
 	    
