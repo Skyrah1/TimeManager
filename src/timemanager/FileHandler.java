@@ -9,9 +9,11 @@ import java.io.File;
 import org.apache.commons.csv.CSVParser;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +21,7 @@ import java.util.Hashtable;
 import java.util.Optional;
 import java.util.TreeMap;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
 
@@ -59,10 +62,29 @@ public class FileHandler {
 		    schedule.put(date.get(), record.get(1));
 		}
 	    }
+	    reader.close();
 	} catch (Exception e){
 	    
 	}
 	return schedule;
+    }
+    
+    public void writeFile(String file, TreeMap<Date, String> schedule){
+	System.out.println("Writing file...");
+	try {
+	    //Create a new file if it doesn't exist, otherwise do nothing
+	    File f = new File(path + "/" + file);
+	    f.createNewFile();
+	    
+	    FileOutputStream outputStream = new FileOutputStream(path + "/" + file);
+	    OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+	    CSVPrinter printer = new CSVPrinter(writer, CSVFormat.EXCEL);
+	    //do stuff
+	    
+	    writer.close();
+	} catch (Exception e){
+	    
+	}
     }
     
     /**
