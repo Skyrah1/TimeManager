@@ -47,7 +47,7 @@ public class FileHandler {
 	} catch (Exception e){
 	    e.printStackTrace();
 	}
-	
+	writeFile("test2.csv", schedule);
     }
     
     public TreeMap<Date, String> readFile(String file){
@@ -83,6 +83,7 @@ public class FileHandler {
 	    writer.write("Time,Activity\n");
 	    for (Map.Entry<Date, String> entry : schedule.entrySet()){
 		//do stuff
+		writer.write(dateToString(entry.getKey()) + "," + entry.getValue() + "\n");
 	    }
 	    writer.close();
 	} catch (Exception e){
@@ -119,6 +120,13 @@ public class FileHandler {
 	    }
 	}
 	return optional;
+    }
+    
+    private String dateToString(Date date){
+	String dateString = date.toString();
+	dateString = dateString.replace("Thu Jan 01 ", "");
+	dateString = dateString.replace(":00 SGT 1970", "");
+	return dateString;
     }
     
 }
