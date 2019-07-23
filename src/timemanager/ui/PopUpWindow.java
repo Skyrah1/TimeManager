@@ -18,12 +18,14 @@ public class PopUpWindow {
     final JComboBox hourComboBox;
     final JComboBox minuteComboBox;
     final JComboBox amPmComboBox;
-    final String[] hours = "1,2,3,4,5,6,7,8,9,10,11,12".split(",");
+    //final 
+    final String[] hours = ",1,2,3,4,5,6,7,8,9,10,11,12".split(",");
     final String[] minutes;
-    final String[] amPm = {"AM", "PM"};
+    final String[] amPm = {"", "AM", "PM"};
     
     public PopUpWindow(String title){
-	this.minutes = new String[60];
+	this.minutes = new String[61];
+	minutes[0] = "";
 	for (int i = 1; i <= 60; i++){
 	    minutes[i] = Integer.toString(i);
 	}
@@ -33,6 +35,17 @@ public class PopUpWindow {
 	this.amPmComboBox = new JComboBox(amPm);
     }
     
-    
+    public void createWindow(){
+	frame.setLayout(null);
+	frame.setBounds(0,0, 400, 400);
+	hourComboBox.setBounds(25, 0, 50, 20);
+	minuteComboBox.setBounds(100, 0, 50, 20);
+	amPmComboBox.setBounds(175, 0, 50, 20);
+	frame.add(hourComboBox);
+	frame.add(minuteComboBox);
+	frame.add(amPmComboBox);
+	frame.setVisible(true);
+	//frame.pack();
+    }
     
 }

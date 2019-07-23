@@ -5,6 +5,8 @@
  */
 package timemanager;
 
+import timemanager.ui.PopUpWindow;
+
 /**
  *
  * @author ASUS
@@ -16,8 +18,10 @@ public class TimeManager {
      */
     public static void main(String[] args) {
 	// TODO code application logic here
-	Presenter presenter = new Presenter();
-	presenter.test();
+	//Presenter presenter = new Presenter();
+	//presenter.test();
+	PopUpWindow window = new PopUpWindow("test");
+	window.createWindow();
     }
     
 }
