@@ -28,9 +28,9 @@ public class PopUpWindow {
 	    minutes[i] = Integer.toString(i);
 	}
 	this.frame = new JFrame(title);
-	this.hourComboBox = new JComboBox();
-	this.minuteComboBox = new JComboBox();
-	this.amPmComboBox = new JComboBox();
+	this.hourComboBox = new JComboBox(hours);
+	this.minuteComboBox = new JComboBox(minutes);
+	this.amPmComboBox = new JComboBox(amPm);
     }
     
     
