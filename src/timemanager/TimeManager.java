@@ -5,6 +5,8 @@
  */
 package timemanager;
 
+import java.util.Date;
+import java.util.TreeMap;
 import timemanager.ui.PopUpWindow;
 
 /**
@@ -18,9 +20,21 @@ public class TimeManager {
      */
     public static void main(String[] args) {
 	// TODO code application logic here
-	//Presenter presenter = new Presenter();
-	//presenter.test();
-	PopUpWindow window = new PopUpWindow("test");
+	testPopUpWindow();
+	//testFileHandler();
+    }
+    
+    public static void testFileHandler(){
+	FileHandler fileHandler = new FileHandler("src/csv");
+	fileHandler.test();
+    }
+    
+    public static void testPopUpWindow(){
+	//PopUpWindow window = new PopUpWindow("test");
+	//window.createWindow();
+	FileHandler fileHandler = new FileHandler("src/csv");
+	TreeMap<Date, String> schedule = fileHandler.readFile("test.csv");
+	PopUpWindow window = new PopUpWindow("test2", schedule, new String[]{"Time", "Activity"});
 	window.createWindow();
     }
     
