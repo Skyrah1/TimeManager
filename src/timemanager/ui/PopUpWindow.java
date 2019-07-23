@@ -5,8 +5,11 @@
  */
 package timemanager.ui;
 
+import java.util.Date;
+import java.util.TreeMap;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 
 /**
  * A pop-up window for when the user wants to edit their schedule
@@ -18,12 +21,24 @@ public class PopUpWindow {
     final JComboBox hourComboBox;
     final JComboBox minuteComboBox;
     final JComboBox amPmComboBox;
-    //final 
+    JTable table;
     final String[] hours = ",1,2,3,4,5,6,7,8,9,10,11,12".split(",");
     final String[] minutes;
     final String[] amPm = {"", "AM", "PM"};
     
     public PopUpWindow(String title){
+	this.minutes = new String[61];
+	minutes[0] = "";
+	for (int i = 1; i <= 60; i++){
+	    minutes[i] = Integer.toString(i);
+	}
+	this.frame = new JFrame(title);
+	this.hourComboBox = new JComboBox(hours);
+	this.minuteComboBox = new JComboBox(minutes);
+	this.amPmComboBox = new JComboBox(amPm);
+    }
+    
+    public PopUpWindow(String title, TreeMap<Date, String> schedule){
 	this.minutes = new String[61];
 	minutes[0] = "";
 	for (int i = 1; i <= 60; i++){
