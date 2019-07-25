@@ -5,6 +5,8 @@
  */
 package timemanager.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -29,6 +31,7 @@ public class PopUpWindow {
     final String[] hours = ",1,2,3,4,5,6,7,8,9,10,11,12".split(",");
     final String[] minutes;
     final String[] amPm = {"", "AM", "PM"};
+    //String time;
     
     public PopUpWindow(String title){
 	this.minutes = new String[61];
@@ -39,6 +42,7 @@ public class PopUpWindow {
 	this.frame = new JFrame(title);
 	this.model = new DefaultTableModel();
 	this.table = new JTable(model);
+	//scrollPane.setViewportView(table);
 	this.hourComboBox = new JComboBox(hours);
 	this.minuteComboBox = new JComboBox(minutes);
 	this.amPmComboBox = new JComboBox(amPm);
@@ -58,6 +62,14 @@ public class PopUpWindow {
 	this.hourComboBox = new JComboBox(hours);
 	this.minuteComboBox = new JComboBox(minutes);
 	this.amPmComboBox = new JComboBox(amPm);
+	/*
+	hourComboBox.addActionListener(new ActionListener(){
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	    }
+	});*/
+	
     }
     
     private void fillTable(TreeMap<Date, String> map){
@@ -69,23 +81,29 @@ public class PopUpWindow {
 	}
     }
     
-    public void createWindow(){
+    public void createWindow(TreeMap<Date, String> map){
+	final int rowHeight = 25;
+	int rowCount = map.size();
+	int tableSpace = rowHeight * rowCount;
 	frame.setLayout(null);
-	frame.setBounds(0,0, 400, 400);
+	frame.setBounds(500, 500, 400, tableSpace + 250);
 	
-	hourComboBox.setBounds(25, 150, 50, 20);
-	minuteComboBox.setBounds(100, 150, 50, 20);
-	amPmComboBox.setBounds(175, 150, 50, 20);
+	table.setRowHeight(rowHeight);
+	table.setBounds(25, 0, 350, tableSpace);
+	table.getColumnModel().getColumn(0).setMaxWidth(50);
+	//table.getColumnModel().getColumn(1).setMinWidth(400);
+	frame.add(table);
+	
+	hourComboBox.setBounds(25, tableSpace + 25, 50, 20);
+	minuteComboBox.setBounds(100, tableSpace + 25, 50, 20);
+	amPmComboBox.setBounds(175, tableSpace + 25, 50, 20);
 	frame.add(hourComboBox);
 	frame.add(minuteComboBox);
 	frame.add(amPmComboBox);
 	
-	table.setRowHeight(20);
-	table.setBounds(25, 0, 125, 350);
-	frame.add(table);
-	
 	frame.setVisible(true);
 	//frame.pack();
     }
+    
     
 }
