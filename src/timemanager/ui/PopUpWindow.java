@@ -10,9 +10,11 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import static timemanager.DateParser.dateToString;
 
@@ -28,11 +30,13 @@ public class PopUpWindow {
     final JComboBox amPmComboBox;
     final JTable table;
     final DefaultTableModel model;
+    final JTextArea textArea;
+    final JButton button;
     final String[] hours = ",1,2,3,4,5,6,7,8,9,10,11,12".split(",");
     final String[] minutes;
     final String[] amPm = {"", "AM", "PM"};
-    //String time;
     
+    /*
     public PopUpWindow(String title){
 	this.minutes = new String[61];
 	minutes[0] = "";
@@ -46,7 +50,7 @@ public class PopUpWindow {
 	this.hourComboBox = new JComboBox(hours);
 	this.minuteComboBox = new JComboBox(minutes);
 	this.amPmComboBox = new JComboBox(amPm);
-    }
+    }*/
     
     public PopUpWindow(String title, TreeMap<Date, String> map, String[] headings){
 	this.minutes = new String[61];
@@ -59,17 +63,11 @@ public class PopUpWindow {
 	fillTable(map);
 	this.table = new JTable(model);
 	this.frame = new JFrame(title);
+	this.textArea = new JTextArea();
+	this.button = new JButton();
 	this.hourComboBox = new JComboBox(hours);
 	this.minuteComboBox = new JComboBox(minutes);
 	this.amPmComboBox = new JComboBox(amPm);
-	/*
-	hourComboBox.addActionListener(new ActionListener(){
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	    }
-	});*/
-	
     }
     
     private void fillTable(TreeMap<Date, String> map){
@@ -85,6 +83,9 @@ public class PopUpWindow {
 	final int rowHeight = 25;
 	int rowCount = map.size();
 	int tableSpace = rowHeight * rowCount;
+	final int textAreaWidth = 300;
+	final int textAreaHeight = 75;
+	
 	frame.setLayout(null);
 	frame.setBounds(500, 500, 400, tableSpace + 250);
 	
@@ -100,6 +101,13 @@ public class PopUpWindow {
 	frame.add(hourComboBox);
 	frame.add(minuteComboBox);
 	frame.add(amPmComboBox);
+	
+	textArea.setBounds(25, tableSpace + 75, textAreaWidth, textAreaHeight);
+	textArea.setWrapStyleWord(true);
+	textArea.setLineWrap(true);
+	frame.add(textArea);
+	
+	
 	
 	frame.setVisible(true);
 	//frame.pack();
