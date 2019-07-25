@@ -34,7 +34,7 @@ public class TimeManager {
 	//window.createWindow();
 	FileHandler fileHandler = new FileHandler("src/csv");
 	TreeMap<Date, String> schedule = fileHandler.readFile("test.csv");
-	PopUpWindow window = new PopUpWindow("test2", schedule, new String[]{"Time", "Activity"});
+	PopUpWindow window = new PopUpWindow("test2", schedule, new String[]{"Time", "Activity"}, "Submit");
 	window.createWindow(schedule);
     }
     

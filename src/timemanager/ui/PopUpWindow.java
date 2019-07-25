@@ -52,7 +52,7 @@ public class PopUpWindow {
 	this.amPmComboBox = new JComboBox(amPm);
     }*/
     
-    public PopUpWindow(String title, TreeMap<Date, String> map, String[] headings){
+    public PopUpWindow(String title, TreeMap<Date, String> map, String[] headings, String buttonText){
 	this.minutes = new String[61];
 	minutes[0] = "";
 	for (int i = 1; i <= 60; i++){
@@ -64,7 +64,7 @@ public class PopUpWindow {
 	this.table = new JTable(model);
 	this.frame = new JFrame(title);
 	this.textArea = new JTextArea();
-	this.button = new JButton();
+	this.button = new JButton(buttonText);
 	this.hourComboBox = new JComboBox(hours);
 	this.minuteComboBox = new JComboBox(minutes);
 	this.amPmComboBox = new JComboBox(amPm);
@@ -107,7 +107,9 @@ public class PopUpWindow {
 	textArea.setLineWrap(true);
 	frame.add(textArea);
 	
-	
+	button.setBounds(textAreaWidth - 50, (tableSpace + textAreaHeight + 85), 75, 30);
+	button.setVisible(true);
+	frame.add(button);
 	
 	frame.setVisible(true);
 	//frame.pack();
