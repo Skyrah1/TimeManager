@@ -37,6 +37,9 @@ public class ButtonListener implements ActionListener {
 	String hourString = (String) hourComboBox.getSelectedItem();
 	String minuteString = (String) minuteComboBox.getSelectedItem();
 	String amPmString = (String) amPmComboBox.getSelectedItem();
+	
+	String activityString = textArea.getText();
+	
 	if (hourString.equals("") || minuteString.equals("") || amPmString.equals("")) {
 	    System.out.println("What do?");
 	} else {
@@ -53,7 +56,7 @@ public class ButtonListener implements ActionListener {
 	    } else {
 		timeString = "";
 	    }
-	    System.out.printf("Time: %s\n", timeString);
+	    System.out.printf("Time: %s\nActivity: %s\n", timeString, activityString);
 	}
 
     }
