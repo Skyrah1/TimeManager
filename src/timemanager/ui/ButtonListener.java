@@ -26,14 +26,17 @@ public class ButtonListener extends DateParser implements ActionListener {
     final JComboBox amPmComboBox;
     final JTextArea textArea;
     final TreeMap<Date, String> schedule;
+    final PopUpWindow window;
 
     public ButtonListener(JComboBox hourComboBox, JComboBox minuteComboBox,
-	    JComboBox amPmComboBox, JTextArea textArea, TreeMap<Date, String> schedule) {
+	    JComboBox amPmComboBox, JTextArea textArea, TreeMap<Date, String> schedule,
+	    PopUpWindow window) {
 	this.hourComboBox = hourComboBox;
 	this.minuteComboBox = minuteComboBox;
 	this.amPmComboBox = amPmComboBox;
 	this.textArea = textArea;
 	this.schedule = schedule;
+	this.window = window;
     }
 
     @Override
@@ -65,6 +68,7 @@ public class ButtonListener extends DateParser implements ActionListener {
 	    if (parseDate(timeString).isPresent()){
 		schedule.put(parseDate(timeString).get(), activityString);
 		System.out.printf("%s\n", schedule.toString());
+		window.updateWindow(schedule);
 	    }
 	}
 
