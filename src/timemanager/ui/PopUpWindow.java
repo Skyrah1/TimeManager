@@ -55,8 +55,8 @@ public class PopUpWindow {
     public PopUpWindow(String title, TreeMap<Date, String> map, String[] headings, String buttonText){
 	this.minutes = new String[61];
 	minutes[0] = "";
-	for (int i = 1; i <= 60; i++){
-	    minutes[i] = Integer.toString(i);
+	for (int i = 0; i <= 59; i++){
+	    minutes[i + 1] = Integer.toString(i);
 	}
 	this.model = new DefaultTableModel();
 	this.model.setColumnIdentifiers(headings);
@@ -109,6 +109,8 @@ public class PopUpWindow {
 	
 	button.setBounds(textAreaWidth - 50, (tableSpace + textAreaHeight + 85), 75, 30);
 	button.setVisible(true);
+	button.addActionListener(new ButtonListener(hourComboBox, minuteComboBox,
+		amPmComboBox, textArea));
 	frame.add(button);
 	
 	frame.setVisible(true);
