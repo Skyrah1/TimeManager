@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.TreeMap;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import timemanager.DateParser;
 
 /**
  * A class that uses the ActionListener interface to handle creating a new
@@ -18,12 +19,13 @@ import javax.swing.JTextArea;
  *
  * @author Yek
  */
-public class ButtonListener implements ActionListener {
+public class ButtonListener extends DateParser implements ActionListener {
 
     final JComboBox hourComboBox;
     final JComboBox minuteComboBox;
     final JComboBox amPmComboBox;
     final JTextArea textArea;
+    final TreeMap<Date, String> schedule;
 
     public ButtonListener(JComboBox hourComboBox, JComboBox minuteComboBox,
 	    JComboBox amPmComboBox, JTextArea textArea, TreeMap<Date, String> schedule) {
@@ -31,6 +33,7 @@ public class ButtonListener implements ActionListener {
 	this.minuteComboBox = minuteComboBox;
 	this.amPmComboBox = amPmComboBox;
 	this.textArea = textArea;
+	this.schedule = schedule;
     }
 
     @Override
@@ -59,6 +62,10 @@ public class ButtonListener implements ActionListener {
 		timeString = "";
 	    }
 	    System.out.printf("Time: %s\nActivity: %s\n", timeString, activityString);
+	    if (parseDate(timeString).isPresent()){
+		schedule.put(parseDate(timeString).get(), activityString);
+		System.out.printf("%s\n", schedule.toString());
+	    }
 	}
 
     }
