@@ -52,7 +52,7 @@ public class PopUpWindow {
 	this.amPmComboBox = new JComboBox(amPm);
     }*/
     
-    public PopUpWindow(String title, TreeMap<Date, String> map, String[] headings, String buttonText){
+    public PopUpWindow(String title, TreeMap<Date, String> schedule, String[] headings, String buttonText){
 	this.minutes = new String[61];
 	minutes[0] = "";
 	for (int i = 0; i <= 59; i++){
@@ -60,7 +60,7 @@ public class PopUpWindow {
 	}
 	this.model = new DefaultTableModel();
 	this.model.setColumnIdentifiers(headings);
-	fillTable(map);
+	fillTable(schedule);
 	this.table = new JTable(model);
 	this.frame = new JFrame(title);
 	this.textArea = new JTextArea();
@@ -70,18 +70,18 @@ public class PopUpWindow {
 	this.amPmComboBox = new JComboBox(amPm);
     }
     
-    private void fillTable(TreeMap<Date, String> map){
+    private void fillTable(TreeMap<Date, String> schedule){
 	int count = 0;
-	for (Entry<Date, String> entry : map.entrySet()){
+	for (Entry<Date, String> entry : schedule.entrySet()){
 	    this.model.insertRow(count, new Object[]{dateToString(entry.getKey()), entry.getValue()});
 	    System.out.printf("Added row: %s and %s\n", dateToString(entry.getKey()), entry.getValue());
 	    count++;
 	}
     }
     
-    public void createWindow(TreeMap<Date, String> map){
+    public void createWindow(TreeMap<Date, String> schedule){
 	final int rowHeight = 25;
-	int rowCount = map.size();
+	int rowCount = schedule.size();
 	int tableSpace = rowHeight * rowCount;
 	final int textAreaWidth = 300;
 	final int textAreaHeight = 75;
@@ -110,7 +110,7 @@ public class PopUpWindow {
 	button.setBounds(textAreaWidth - 50, (tableSpace + textAreaHeight + 85), 75, 30);
 	button.setVisible(true);
 	button.addActionListener(new ButtonListener(hourComboBox, minuteComboBox,
-		amPmComboBox, textArea));
+		amPmComboBox, textArea, schedule));
 	frame.add(button);
 	
 	frame.setVisible(true);

@@ -7,6 +7,8 @@ package timemanager.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.TreeMap;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
@@ -24,7 +26,7 @@ public class ButtonListener implements ActionListener {
     final JTextArea textArea;
 
     public ButtonListener(JComboBox hourComboBox, JComboBox minuteComboBox,
-	    JComboBox amPmComboBox, JTextArea textArea) {
+	    JComboBox amPmComboBox, JTextArea textArea, TreeMap<Date, String> schedule) {
 	this.hourComboBox = hourComboBox;
 	this.minuteComboBox = minuteComboBox;
 	this.amPmComboBox = amPmComboBox;
