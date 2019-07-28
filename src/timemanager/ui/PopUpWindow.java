@@ -85,6 +85,10 @@ public class PopUpWindow {
 	frame.setVisible(true);
     }
     
+    public void hideWindow(){
+	frame.setVisible(false);
+    }
+    
     public void updateWindow(TreeMap<Date, String> schedule){
 	final int rowHeight = 25;
 	int rowCount = schedule.size();
@@ -125,8 +129,8 @@ public class PopUpWindow {
 	//frame.pack();
     }
     
-    public void updateWindow(){
-	
+    public void showWindow(){
+	frame.setVisible(true);
     }
     
     
