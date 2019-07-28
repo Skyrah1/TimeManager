@@ -5,7 +5,9 @@
  */
 package timemanager.ui;
 
+import java.awt.Font;
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 /**
  * The main display window, used to provide reminders
@@ -14,9 +16,24 @@ import javax.swing.JFrame;
 public class DisplayWindow {
     
     final JFrame frame;
+    final JTextArea textArea;
+    final Font font;
     
     public DisplayWindow(String title){
 	this.frame = new JFrame(title);
+	this.textArea = new JTextArea();
+	this.font = new Font("Arial", Font.PLAIN, 20);
+	textArea.setFont(font);
+	frame.setLayout(null);
+    }
+    
+    public void updateWindow(String text){
+	if (text != null){
+	    textArea.setText(text);
+	} else {
+	    textArea.setText("");
+	}
+	frame.add(textArea);
     }
     
 }
