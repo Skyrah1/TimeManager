@@ -5,10 +5,18 @@
  */
 package timemanager.ui;
 
+import javax.swing.JFrame;
+
 /**
  * The main display window, used to provide reminders
  * @author Yek
  */
 public class DisplayWindow {
+    
+    final JFrame frame;
+    
+    public DisplayWindow(String title){
+	this.frame = new JFrame(title);
+    }
     
 }
