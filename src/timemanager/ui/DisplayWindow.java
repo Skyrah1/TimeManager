@@ -5,7 +5,9 @@
  */
 package timemanager.ui;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
@@ -20,16 +22,19 @@ public class DisplayWindow {
     final Font font;
     
     public DisplayWindow(String title){
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	int textX = 25;
 	int textY = 25;
-	int frameX = 500;
-	int frameY = 500;
+	int frameWidth = 300;
+	int frameHeight = 200;
+	int frameX = (int)screenSize.getWidth() - frameWidth;
+	int frameY = (int)screenSize.getHeight() - frameHeight;
 	this.frame = new JFrame(title);
 	this.textArea = new JTextArea();
-	this.font = new Font("Arial", Font.PLAIN, 20);
+	this.font = new Font("Arial", Font.PLAIN, 18);
 	textArea.setFont(font);
-	textArea.setBounds(textX, textY, 400, 25);
-	frame.setBounds(frameX, frameY, 500, 500);
+	textArea.setBounds(textX, textY, 200, 18);
+	frame.setBounds(frameX, frameY, frameWidth, frameHeight);
 	frame.setLayout(null);
 	frame.setAlwaysOnTop(true);
 	frame.setFocusableWindowState(false);
