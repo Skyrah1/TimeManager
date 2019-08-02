@@ -8,6 +8,11 @@ package timemanager.ui;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.TreeMap;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
@@ -20,8 +25,10 @@ public class DisplayWindow {
     final JFrame frame;
     final JTextArea textArea;
     final Font font;
+    final PopUpWindow window;
+    final JButton button;
     
-    public DisplayWindow(String title){
+    public DisplayWindow(String title, TreeMap<Date, String> schedule){
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	int textX = 25;
 	int textY = 25;
@@ -32,8 +39,23 @@ public class DisplayWindow {
 	this.frame = new JFrame(title);
 	this.textArea = new JTextArea();
 	this.font = new Font("Arial", Font.PLAIN, 18);
+	this.window = new PopUpWindow("test2", new String[]{"Time", "Activity"}, "Submit");
+	this.button = new JButton("Pop-up");
+	window.createWindow(schedule);
+	window.hideWindow();
 	textArea.setFont(font);
 	textArea.setBounds(textX, textY, 200, 18);
+	button.setFont(font);
+	button.setBounds((frameWidth/2) - 50, frameHeight-50, 100, 25);
+	button.addActionListener(new ActionListener(){
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		openPopUpWindow();
+	    }
+	    
+	});
+	frame.add(textArea);
+	frame.add(button);
 	frame.setBounds(frameX, frameY, frameWidth, frameHeight);
 	frame.setLayout(null);
 	frame.setAlwaysOnTop(true);
@@ -59,6 +81,10 @@ public class DisplayWindow {
     
     public void hideWindow(){
 	frame.setVisible(false);
+    }
+    
+    public void openPopUpWindow(){
+	window.showWindow();
     }
     
 }

@@ -43,7 +43,9 @@ public class TimeManager {
     }
     
     public static void testDisplayWindow(){
-	DisplayWindow window = new DisplayWindow("test");
+	FileHandler fileHandler = new FileHandler("src/csv");
+	TreeMap<Date, String> schedule = fileHandler.readFile("test.csv");
+	DisplayWindow window = new DisplayWindow("test", schedule);
 	window.updateWindow("Hello World!");
 	window.showWindow();
     }
