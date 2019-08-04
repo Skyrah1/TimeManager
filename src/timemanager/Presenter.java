@@ -5,6 +5,8 @@
  */
 package timemanager;
 
+import java.util.Date;
+import java.util.TreeMap;
 import timemanager.ui.UiHandler;
 
 /**
@@ -17,8 +19,19 @@ public class Presenter {
     
     public void test(){
 	FileHandler fileHandler = new FileHandler("src/csv");
-	UiHandler uiHandler = new UiHandler();
 	fileHandler.test();
+    }
+    
+    public void run(){
+	FileHandler fileHandler = new FileHandler("src/csv");
+	TreeMap<Date, String> schedule = fileHandler.readFile("test.csv");
+	UiHandler uiHandler = new UiHandler(schedule);
+	try {
+	    System.out.printf("%s\n", schedule.toString());
+	    uiHandler.run();
+	} catch (Exception e){
+	    e.printStackTrace();
+	}
     }
     
 }
