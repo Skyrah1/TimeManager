@@ -25,12 +25,20 @@ public class Presenter {
     public void run(){
 	FileHandler fileHandler = new FileHandler("src/csv");
 	TreeMap<Date, String> schedule = fileHandler.readFile("test.csv");
-	UiHandler uiHandler = new UiHandler(schedule);
+	UiHandler uiHandler = new UiHandler("Time Manager", schedule);
+	long nextTime = System.currentTimeMillis() + 60000;
+	boolean running = true;
 	try {
 	    System.out.printf("%s\n", schedule.toString());
-	    uiHandler.run();
+	    uiHandler.showWindow();
+	    while (running){
+		if (System.currentTimeMillis() >= nextTime){
+		    nextTime += 60000;
+		}
+	    }
 	} catch (Exception e){
 	    e.printStackTrace();
+	    running = false;
 	}
     }
     

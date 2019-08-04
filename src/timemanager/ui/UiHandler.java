@@ -15,14 +15,19 @@ import java.util.TreeMap;
 public class UiHandler {
     
     final TreeMap<Date, String> schedule;
+    final DisplayWindow window;
     
-    public UiHandler(TreeMap<Date, String> schedule){
+    public UiHandler(String title, TreeMap<Date, String> schedule){
 	this.schedule = schedule;
+	this.window = new DisplayWindow("Time Manager", schedule);
     }
     
-    public void run(){
-	DisplayWindow window = new DisplayWindow("Time Manager", schedule);
+    public void showWindow(){
 	window.showWindow();
+    }
+    
+    public void updateText(String text){
+	window.updateWindow(text);
     }
     
 }
