@@ -7,6 +7,7 @@ package timemanager;
 
 import java.util.ConcurrentModificationException;
 import java.util.Date;
+import java.util.Optional;
 import java.util.TreeMap;
 import timemanager.ui.UiHandler;
 
@@ -16,7 +17,7 @@ import timemanager.ui.UiHandler;
  *
  * @author Yek
  */
-public class Presenter {
+public class Presenter extends DateParser{
 
     public void test() {
 	FileHandler fileHandler = new FileHandler("src/csv");
@@ -31,18 +32,28 @@ public class Presenter {
 	UiHandler uiHandler = new UiHandler("Time Manager", schedule);
 	long nextTime = System.currentTimeMillis() + 60000;
 	long checkTime = System.currentTimeMillis() + 1000;
+	Optional<Date> date;
 	boolean running = true;
 	try {
 	    System.out.printf("%s\n", schedule.toString());
 	    uiHandler.showWindow();
 	    while (running) {
-		//check schedule every second to see if it's changed
-		if (System.currentTimeMillis() >= checkTime && !schedule.equals(tempSchedule)) {
-		    updateSchedule(fileHandler, file, schedule, tempSchedule);
+		//Every second, do this
+		if (System.currentTimeMillis() >= checkTime) {
+		    if (!schedule.equals(tempSchedule)){
+			updateSchedule(fileHandler, file, schedule, tempSchedule);
+		    }
+		    date = parseDate(dateToString(new Date()));
+		    if (date.isPresent() && schedule.containsKey(date.get())){
+			uiHandler.updateText(schedule.get(date));
+		    }
 		    checkTime = System.currentTimeMillis() + 1000;
+		    
 		}
+		//Every minute, do this
 		if (System.currentTimeMillis() >= nextTime) {
 		    nextTime = System.currentTimeMillis() + 60000;
+		    
 		}
 	    }
 	} catch (Exception e) {

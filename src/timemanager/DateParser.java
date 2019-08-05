@@ -47,8 +47,9 @@ public abstract class DateParser {
     
     public static String dateToString(Date date){
 	String dateString = date.toString();
-	dateString = dateString.replace("Thu Jan 01 ", "");
-	dateString = dateString.replace(":00 SGT 1970", "");
+	//dateString = dateString.replace("Thu Jan 01 ", "");
+	//dateString = dateString.replace(":00 SGT 1970", "");
+	dateString = dateString.substring(11, 16);
 	return dateString;
     }
 }
