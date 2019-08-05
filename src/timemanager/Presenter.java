@@ -46,7 +46,7 @@ public class Presenter extends DateParser {
 		    }
 		    date = parseDate(dateToString(new Date()));
 		    if (date.isPresent() && schedule.containsKey(date.get())) {
-			uiHandler.updateText(schedule.get(date));
+			uiHandler.updateText(schedule.get(date.get()));
 		    }
 		    checkTime = System.currentTimeMillis() + 1000;
 
