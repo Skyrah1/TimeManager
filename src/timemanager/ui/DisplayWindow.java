@@ -35,6 +35,7 @@ public class DisplayWindow {
     final JButton button;
     ArrayList<BufferedImage> images;
     private int imageIndex;
+    final private JLabel currentImage;
     
     public DisplayWindow(String title, TreeMap<Date, String> schedule,
 			ArrayList<BufferedImage> images){
@@ -45,6 +46,10 @@ public class DisplayWindow {
 	int frameHeight = 200;
 	int frameX = (int)screenSize.getWidth() - frameWidth;
 	int frameY = (int)screenSize.getHeight() - frameHeight;
+	int imageX = 25;
+	int imageY = 75;
+	int imageWidth = 200;
+	int imageHeight = 150;
 	this.frame = new JFrame(title);
 	this.textArea = new JTextArea();
 	this.font = new Font("Arial", Font.PLAIN, 18);
@@ -52,27 +57,32 @@ public class DisplayWindow {
 	this.button = new JButton("Pop-up");
 	this.images = images;
 	this.imageIndex = 0;
-	window.createWindow(schedule);
-	window.hideWindow();
-	textArea.setFont(font);
-	textArea.setBounds(textX, textY, 200, 18);
-	button.setFont(font);
-	button.setBounds((frameWidth/2) - 50, frameHeight-50, 100, 25);
-	button.addActionListener(new ActionListener(){
+	this.currentImage = new JLabel();
+	//this.currentImage.setText("jellyfish");
+	this.currentImage.setBounds(imageX, imageY, imageWidth, imageHeight);
+	
+	this.window.createWindow(schedule);
+	this.window.hideWindow();
+	this.textArea.setFont(font);
+	this.textArea.setBounds(textX, textY, 200, 18);
+	this.button.setFont(font);
+	this.button.setBounds((frameWidth/2) - 50, frameHeight-50, 100, 25);
+	this.button.addActionListener(new ActionListener(){
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		openPopUpWindow();
 	    }
 	    
 	});
-	frame.add(textArea);
-	frame.add(button);
-	frame.setBounds(frameX, frameY, frameWidth, frameHeight);
-	frame.setLayout(null);
-	frame.setAlwaysOnTop(true);
-	frame.setFocusableWindowState(false);
-	frame.setUndecorated(true);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.frame.add(textArea);
+	this.frame.add(button);
+	this.frame.setBounds(frameX, frameY, frameWidth, frameHeight);
+	this.frame.setLayout(null);
+	//this.frame.setAlwaysOnTop(true);
+	this.frame.setFocusableWindowState(false);
+	//this.frame.setUndecorated(true);
+	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	updateImage();
     }
     
     public void updateWindow(String text){
@@ -88,7 +98,8 @@ public class DisplayWindow {
     }
     
     public void updateImage(){
-	JLabel currentImage = new JLabel(new ImageIcon(images.get(imageIndex)));
+	System.out.println("...");
+	currentImage.setIcon(new ImageIcon(images.get(imageIndex)));
 	frame.add(currentImage);
 	imageIndex = (imageIndex + 1) % images.size();
     }
