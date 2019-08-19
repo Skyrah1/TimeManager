@@ -15,6 +15,9 @@ import java.util.Optional;
  */
 public abstract class DateParser {
     /**
+     * Abstract class to represent Date objects as strings, and to create
+     * Date objects from formatted strings
+     * 
      * Note: the field in the first record in the CSV file will ALWAYS be an
      * unparseable date (reserved for headers)
      * 

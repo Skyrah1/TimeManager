@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author ASUS
+ * Handles the reading of image files in a directory
+ * 
+ * @author Yek
  */
 public class ImageHandler {
     

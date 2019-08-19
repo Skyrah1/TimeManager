@@ -17,6 +17,8 @@ import timemanager.DateParser;
  * A class that uses the ActionListener interface to handle creating a new
  * schedule entry
  *
+ * Note: This is tightly coupled with PopUpWindow
+ * 
  * @author Yek
  */
 public class ButtonListener extends DateParser implements ActionListener {

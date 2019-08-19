@@ -28,6 +28,10 @@ public class TimeManager {
 	presenter.run();
     }
     
+    /*
+    Tests go under here
+    */
+    
     public static void testFileHandler(){
 	FileHandler fileHandler = new FileHandler("src/csv");
 	fileHandler.test();

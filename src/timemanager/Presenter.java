@@ -50,7 +50,10 @@ public class Presenter extends DateParser {
 		    uiHandler.updateImage();
 		    nextImageTime = System.currentTimeMillis() + animationDelay;
 		}
-		//Every second, do this
+		//Every second, check if there are any activities scheduled
+		//If yes, update the text
+		//Also check if the user has tried to add an activity to the
+		//schedule, and update it if that's the case
 		if (System.currentTimeMillis() >= checkTime) {
 		    if (!schedule.equals(tempSchedule)) {
 			updateSchedule(fileHandler, file, schedule, tempSchedule);
