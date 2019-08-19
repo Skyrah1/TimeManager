@@ -35,6 +35,7 @@ public class DisplayWindow {
     final JButton button;
     ArrayList<BufferedImage> images;
     private int imageIndex;
+    private ImageIcon icon;
     final private JLabel currentImage;
     
     public DisplayWindow(String title, TreeMap<Date, String> schedule,
@@ -82,6 +83,7 @@ public class DisplayWindow {
 	this.frame.setFocusableWindowState(false);
 	//this.frame.setUndecorated(true);
 	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	icon = new ImageIcon(images.get(imageIndex));
 	updateImage();
     }
     
@@ -98,10 +100,13 @@ public class DisplayWindow {
     }
     
     public void updateImage(){
-	System.out.println("...");
-	currentImage.setIcon(new ImageIcon(images.get(imageIndex)));
-	frame.add(currentImage);
+	icon = new ImageIcon(images.get(imageIndex));
+	currentImage.setIcon(icon);
 	imageIndex = (imageIndex + 1) % images.size();
+	icon.getImage().flush();
+	currentImage.repaint();
+	frame.add(currentImage);
+	System.out.printf("%d\n", imageIndex);
     }
     
     public void showWindow(){

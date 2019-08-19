@@ -5,6 +5,8 @@
  */
 package timemanager;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.Map.Entry;
@@ -28,17 +30,26 @@ public class Presenter extends DateParser {
     public void run() {
 	String file = "test3.csv";
 	FileHandler fileHandler = new FileHandler("src/csv");
+	ImageHandler imageHandler = new ImageHandler("src/gif");
 	TreeMap<Date, String> schedule = fileHandler.readFile(file);
 	TreeMap<Date, String> tempSchedule = fileHandler.readFile(file);
-	UiHandler uiHandler = new UiHandler("Time Manager", schedule);
-	long nextTime = System.currentTimeMillis() + 60000;
+	ArrayList<BufferedImage> images = imageHandler.getImages();
+	UiHandler uiHandler = new UiHandler("Time Manager", schedule, images);
+	//long nextTime = System.currentTimeMillis() + 60000;
 	long checkTime = System.currentTimeMillis() + 1000;
+	final long animationDelay = 1000;
+	long nextImageTime = System.currentTimeMillis() + animationDelay;
 	Optional<Date> date;
 	boolean running = true;
 	try {
 	    System.out.printf("%s\n", schedule.toString());
 	    uiHandler.showWindow();
 	    while (running) {
+		//Update animation here
+		if (System.currentTimeMillis() >= nextImageTime){
+		    uiHandler.updateImage();
+		    nextImageTime = System.currentTimeMillis() + animationDelay;
+		}
 		//Every second, do this
 		if (System.currentTimeMillis() >= checkTime) {
 		    if (!schedule.equals(tempSchedule)) {
@@ -52,10 +63,9 @@ public class Presenter extends DateParser {
 
 		}
 		//Every minute, do this
-		if (System.currentTimeMillis() >= nextTime) {
-		    nextTime = System.currentTimeMillis() + 60000;
-
-		}
+		//if (System.currentTimeMillis() >= nextTime) {
+		    //nextTime = System.currentTimeMillis() + 60000;
+		//}
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();

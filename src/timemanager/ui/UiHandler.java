@@ -5,6 +5,8 @@
  */
 package timemanager.ui;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 
@@ -17,9 +19,10 @@ public class UiHandler {
     final TreeMap<Date, String> schedule;
     final DisplayWindow window;
     
-    public UiHandler(String title, TreeMap<Date, String> schedule){
+    public UiHandler(String title, TreeMap<Date, String> schedule,
+		    ArrayList<BufferedImage> images){
 	this.schedule = schedule;
-	this.window = new DisplayWindow("Time Manager", schedule);
+	this.window = new DisplayWindow("Time Manager", schedule, images);
     }
     
     public void showWindow(){
@@ -28,6 +31,10 @@ public class UiHandler {
     
     public void updateText(String text){
 	window.updateWindow(text);
+    }
+    
+    public void updateImage(){
+	window.updateImage();
     }
     
 }

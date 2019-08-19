@@ -23,9 +23,9 @@ public class TimeManager {
 	// TODO code application logic here
 	//testPopUpWindow();
 	//testFileHandler();
-	testDisplayWindow();
-	/*Presenter presenter = new Presenter();
-	presenter.run();*/
+	//testDisplayWindow();
+	Presenter presenter = new Presenter();
+	presenter.run();
     }
     
     public static void testFileHandler(){
