@@ -5,8 +5,6 @@
  */
 package timemanager.ui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -36,22 +34,6 @@ public class PopUpWindow {
     final String[] minutes;
     final String[] amPm = {"", "AM", "PM"};
     
-    /*
-    public PopUpWindow(String title){
-	this.minutes = new String[61];
-	minutes[0] = "";
-	for (int i = 1; i <= 60; i++){
-	    minutes[i] = Integer.toString(i);
-	}
-	this.frame = new JFrame(title);
-	this.model = new DefaultTableModel();
-	this.table = new JTable(model);
-	//scrollPane.setViewportView(table);
-	this.hourComboBox = new JComboBox(hours);
-	this.minuteComboBox = new JComboBox(minutes);
-	this.amPmComboBox = new JComboBox(amPm);
-    }*/
-    
     public PopUpWindow(String title,  String[] headings, String buttonText){
 	this.minutes = new String[61];
 	minutes[0] = "";
@@ -60,7 +42,7 @@ public class PopUpWindow {
 	}
 	this.model = new DefaultTableModel();
 	this.model.setColumnIdentifiers(headings);
-	//fillTable(schedule);
+	
 	this.table = new JTable(model);
 	this.frame = new JFrame(title);
 	this.textArea = new JTextArea();
@@ -104,7 +86,6 @@ public class PopUpWindow {
 	table.setRowHeight(rowHeight);
 	table.setBounds(25, 0, 350, tableSpace);
 	table.getColumnModel().getColumn(0).setMaxWidth(50);
-	//table.getColumnModel().getColumn(1).setMinWidth(400);
 	frame.add(table);
 	
 	hourComboBox.setBounds(25, tableSpace + 25, 50, 20);
@@ -125,8 +106,6 @@ public class PopUpWindow {
 		amPmComboBox, textArea, schedule, this));
 	frame.add(button);
 	
-	
-	//frame.pack();
     }
     
     public void showWindow(){
