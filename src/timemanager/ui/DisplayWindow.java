@@ -36,10 +36,11 @@ public class DisplayWindow {
     ArrayList<BufferedImage> images;
     private int imageIndex;
     private ImageIcon icon;
-    final private JLabel currentImage;
+    //private Image image;
+    final private JLabel imageLabel;
     
     public DisplayWindow(String title, TreeMap<Date, String> schedule,
-			ArrayList<BufferedImage> images){
+			ImageIcon icon){
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	int textX = 25;
 	int textY = 25;
@@ -56,11 +57,16 @@ public class DisplayWindow {
 	this.font = new Font("Arial", Font.PLAIN, 18);
 	this.window = new PopUpWindow("test2", new String[]{"Time", "Activity"}, "Submit");
 	this.button = new JButton("Pop-up");
-	this.images = images;
+	this.icon = icon;
 	this.imageIndex = 0;
-	this.currentImage = new JLabel();
-	//this.currentImage.setText("jellyfish");
-	this.currentImage.setBounds(imageX, imageY, imageWidth, imageHeight);
+	
+	this.imageLabel = new JLabel();
+	this.imageLabel.setIcon(this.icon);
+	this.icon.setImageObserver(imageLabel);
+	this.frame.add(imageLabel);
+	
+	this.imageLabel.setText("jellyfish");
+	this.imageLabel.setBounds(imageX, imageY, imageWidth, imageHeight);
 	
 	this.window.createWindow(schedule);
 	this.window.hideWindow();
@@ -83,8 +89,8 @@ public class DisplayWindow {
 	this.frame.setFocusableWindowState(false);
 	//this.frame.setUndecorated(true);
 	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	icon = new ImageIcon(images.get(imageIndex));
-	updateImage();
+	//icon = new ImageIcon(images.get(imageIndex));
+	//updateImage();
     }
     
     public void updateWindow(String text){
@@ -96,18 +102,19 @@ public class DisplayWindow {
 	    textArea.setVisible(false);
 	}
 	frame.add(textArea);
-	updateImage();
+	//updateImage();
     }
     
+    /*
     public void updateImage(){
 	icon = new ImageIcon(images.get(imageIndex));
-	currentImage.setIcon(icon);
+	imageLabel.setIcon(icon);
 	imageIndex = (imageIndex + 1) % images.size();
 	icon.getImage().flush();
-	currentImage.repaint();
-	frame.add(currentImage);
+	imageLabel.repaint();
+	frame.add(imageLabel);
 	System.out.printf("%d\n", imageIndex);
-    }
+    }*/
     
     public void showWindow(){
 	frame.setVisible(true);

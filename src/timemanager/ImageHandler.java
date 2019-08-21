@@ -5,11 +5,13 @@
  */
 package timemanager;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * Handles the reading of image files in a directory
@@ -29,13 +31,20 @@ public class ImageHandler {
 	File[] files = new File(path).listFiles();
 	for (File file : files){
 	    try {
-		images.add(ImageIO.read(file));
+		//images.add(ImageIO.read(file));
 		System.out.printf("Reading %s\n", file.getCanonicalPath());
 	    } catch (IOException e){
 		e.printStackTrace();
 	    }
 	}
 	return images;
+    }
+    
+    public ImageIcon getImageIcon(String file){
+	String filePath = path + "/" + file;
+	System.out.printf("Reading %s\n", filePath);
+	ImageIcon icon = new ImageIcon(filePath);
+	return icon;
     }
     
 }

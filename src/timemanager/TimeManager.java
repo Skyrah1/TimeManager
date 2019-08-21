@@ -53,7 +53,7 @@ public class TimeManager {
 	ImageHandler imageHandler = new ImageHandler("src/png");
 	TreeMap<Date, String> schedule = fileHandler.readFile("test.csv");
 	DisplayWindow window =
-		new DisplayWindow("test", schedule, imageHandler.getImages());
+		new DisplayWindow("test", schedule, imageHandler.getImageIcon("jellyfish.gif"));
 	window.updateWindow("Hello World!");
 	window.showWindow();
     }

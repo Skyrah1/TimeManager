@@ -5,10 +5,12 @@
  */
 package timemanager.ui;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
+import javax.swing.ImageIcon;
 
 /**
  * Handles the creation and updating of visual elements
@@ -20,9 +22,9 @@ public class UiHandler {
     final DisplayWindow window;
     
     public UiHandler(String title, TreeMap<Date, String> schedule,
-		    ArrayList<BufferedImage> images){
+		    ImageIcon icon){
 	this.schedule = schedule;
-	this.window = new DisplayWindow("Time Manager", schedule, images);
+	this.window = new DisplayWindow("Time Manager", schedule, icon);
     }
     
     public void showWindow(){
@@ -33,8 +35,9 @@ public class UiHandler {
 	window.updateWindow(text);
     }
     
+    /*
     public void updateImage(){
 	window.updateImage();
-    }
+    }*/
     
 }

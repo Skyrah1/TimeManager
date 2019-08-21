@@ -5,6 +5,7 @@
  */
 package timemanager;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.TreeMap;
+import javax.swing.ImageIcon;
 import timemanager.ui.UiHandler;
 
 /**
@@ -33,8 +35,9 @@ public class Presenter extends DateParser {
 	ImageHandler imageHandler = new ImageHandler("src/gif");
 	TreeMap<Date, String> schedule = fileHandler.readFile(file);
 	TreeMap<Date, String> tempSchedule = fileHandler.readFile(file);
-	ArrayList<BufferedImage> images = imageHandler.getImages();
-	UiHandler uiHandler = new UiHandler("Time Manager", schedule, images);
+	//ArrayList<BufferedImage> images = imageHandler.getImages();
+	ImageIcon icon = imageHandler.getImageIcon("jellyfish.gif");
+	UiHandler uiHandler = new UiHandler("Time Manager", schedule, icon);
 	//long nextTime = System.currentTimeMillis() + 60000;
 	long checkTime = System.currentTimeMillis() + 1000;
 	final long animationDelay = 1000;
@@ -46,10 +49,11 @@ public class Presenter extends DateParser {
 	    uiHandler.showWindow();
 	    while (running) {
 		//Update animation here
+		/*
 		if (System.currentTimeMillis() >= nextImageTime){
 		    uiHandler.updateImage();
 		    nextImageTime = System.currentTimeMillis() + animationDelay;
-		}
+		}*/
 		//Every second, check if there are any activities scheduled
 		//If yes, update the text
 		//Also check if the user has tried to add an activity to the
