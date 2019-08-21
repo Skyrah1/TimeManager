@@ -42,11 +42,11 @@ public class DisplayWindow {
 	int textX = 25;
 	int textY = 25;
 	int frameWidth = 300;
-	int frameHeight = 200;
+	int frameHeight = 300;
 	int frameX = (int)screenSize.getWidth() - frameWidth;
-	int frameY = (int)screenSize.getHeight() - frameHeight;
+	int frameY = (int)screenSize.getHeight() - frameHeight - 70;
 	int imageX = 25;
-	int imageY = 75;
+	int imageY = 50;
 	int imageWidth = 200;
 	int imageHeight = 150;
 	this.frame = new JFrame(title);
@@ -69,7 +69,7 @@ public class DisplayWindow {
 	this.textArea.setFont(font);
 	this.textArea.setBounds(textX, textY, 200, 18);
 	this.button.setFont(font);
-	this.button.setBounds((frameWidth/2) - 50, frameHeight-50, 100, 25);
+	this.button.setBounds((frameWidth/2) - 50, frameHeight-100, 100, 25);
 	this.button.addActionListener(new ActionListener(){
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
