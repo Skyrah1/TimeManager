@@ -7,7 +7,6 @@ package timemanager.ui;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
@@ -34,8 +32,7 @@ public class DisplayWindow {
     final PopUpWindow window;
     final JButton button;
     ArrayList<BufferedImage> images;
-    private int imageIndex;
-    private ImageIcon icon;
+    private final ImageIcon icon;
     //private Image image;
     final private JLabel imageLabel;
     
@@ -58,7 +55,6 @@ public class DisplayWindow {
 	this.window = new PopUpWindow("test2", new String[]{"Time", "Activity"}, "Submit");
 	this.button = new JButton("Pop-up");
 	this.icon = icon;
-	this.imageIndex = 0;
 	
 	this.imageLabel = new JLabel();
 	this.imageLabel.setIcon(this.icon);
@@ -104,17 +100,6 @@ public class DisplayWindow {
 	frame.add(textArea);
 	//updateImage();
     }
-    
-    /*
-    public void updateImage(){
-	icon = new ImageIcon(images.get(imageIndex));
-	imageLabel.setIcon(icon);
-	imageIndex = (imageIndex + 1) % images.size();
-	icon.getImage().flush();
-	imageLabel.repaint();
-	frame.add(imageLabel);
-	System.out.printf("%d\n", imageIndex);
-    }*/
     
     public void showWindow(){
 	frame.setVisible(true);

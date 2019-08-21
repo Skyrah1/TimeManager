@@ -5,9 +5,6 @@
  */
 package timemanager.ui;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
@@ -34,10 +31,5 @@ public class UiHandler {
     public void updateText(String text){
 	window.updateWindow(text);
     }
-    
-    /*
-    public void updateImage(){
-	window.updateImage();
-    }*/
     
 }

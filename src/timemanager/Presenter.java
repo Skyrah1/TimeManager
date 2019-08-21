@@ -5,12 +5,8 @@
  */
 package timemanager;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Date;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
@@ -48,12 +44,6 @@ public class Presenter extends DateParser {
 	    System.out.printf("%s\n", schedule.toString());
 	    uiHandler.showWindow();
 	    while (running) {
-		//Update animation here
-		/*
-		if (System.currentTimeMillis() >= nextImageTime){
-		    uiHandler.updateImage();
-		    nextImageTime = System.currentTimeMillis() + animationDelay;
-		}*/
 		//Every second, check if there are any activities scheduled
 		//If yes, update the text
 		//Also check if the user has tried to add an activity to the
