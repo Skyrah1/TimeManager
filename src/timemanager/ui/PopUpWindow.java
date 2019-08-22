@@ -5,6 +5,7 @@
  */
 package timemanager.ui;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -33,6 +34,7 @@ public class PopUpWindow {
     final String[] hours = ",1,2,3,4,5,6,7,8,9,10,11,12".split(",");
     final String[] minutes;
     final String[] amPm = {"", "AM", "PM"};
+    final ArrayList<JButton> deleteButtons;
     
     public PopUpWindow(String title,  String[] headings, String buttonText){
 	this.minutes = new String[61];
@@ -50,13 +52,19 @@ public class PopUpWindow {
 	this.hourComboBox = new JComboBox(hours);
 	this.minuteComboBox = new JComboBox(minutes);
 	this.amPmComboBox = new JComboBox(amPm);
+	
+	this.deleteButtons = new ArrayList<>();
     }
     
     private void fillTable(TreeMap<Date, String> schedule){
 	model.setRowCount(0);
 	int count = 0;
+	JButton deleteButton;
 	for (Entry<Date, String> entry : schedule.entrySet()){
 	    this.model.insertRow(count, new Object[]{dateToString(entry.getKey()), entry.getValue()});
+	    deleteButton = new JButton("X");
+	    deleteButtons.add(deleteButton);
+	    deleteButton.addActionListener(new DeleteButtonListener(this, schedule, entry));
 	    System.out.printf("Added row: %s and %s\n", dateToString(entry.getKey()), entry.getValue());
 	    count++;
 	}
@@ -81,12 +89,14 @@ public class PopUpWindow {
 	fillTable(schedule);
 	
 	frame.setLayout(null);
-	frame.setBounds(500, 500, 400, tableSpace + 250);
+	frame.setBounds(500, 500, 450, tableSpace + 250);
 	
 	table.setRowHeight(rowHeight);
-	table.setBounds(25, 0, 350, tableSpace);
+	table.setBounds(50, 0, 350, tableSpace);
 	table.getColumnModel().getColumn(0).setMaxWidth(50);
 	frame.add(table);
+	
+	updateDeleteButtons(rowHeight, 0, 0);
 	
 	hourComboBox.setBounds(25, tableSpace + 25, 50, 20);
 	minuteComboBox.setBounds(100, tableSpace + 25, 50, 20);
@@ -106,6 +116,15 @@ public class PopUpWindow {
 		amPmComboBox, textArea, schedule, this));
 	frame.add(button);
 	
+    }
+    
+    private void updateDeleteButtons(int rowHeight, int tableX, int tableY){
+	int index = 0;
+	for (JButton b : deleteButtons){
+	    b.setBounds(tableX, tableY + (rowHeight * index), 45, rowHeight);
+	    frame.add(b);
+	    index++;
+	}
     }
     
     public void showWindow(){

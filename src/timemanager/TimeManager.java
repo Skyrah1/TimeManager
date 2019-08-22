@@ -21,11 +21,12 @@ public class TimeManager {
      */
     public static void main(String[] args) {
 	// TODO code application logic here
-	//testPopUpWindow();
+	testPopUpWindow();
 	//testFileHandler();
 	//testDisplayWindow();
+	/*
 	Presenter presenter = new Presenter();
-	presenter.run();
+	presenter.run();*/
     }
     
     /*
