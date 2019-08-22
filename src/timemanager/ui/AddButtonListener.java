@@ -21,7 +21,7 @@ import timemanager.DateParser;
  * 
  * @author Yek
  */
-public class ButtonListener extends DateParser implements ActionListener {
+public class AddButtonListener extends DateParser implements ActionListener {
 
     final JComboBox hourComboBox;
     final JComboBox minuteComboBox;
@@ -30,7 +30,7 @@ public class ButtonListener extends DateParser implements ActionListener {
     final TreeMap<Date, String> schedule;
     final PopUpWindow window;
 
-    public ButtonListener(JComboBox hourComboBox, JComboBox minuteComboBox,
+    public AddButtonListener(JComboBox hourComboBox, JComboBox minuteComboBox,
 	    JComboBox amPmComboBox, JTextArea textArea, TreeMap<Date, String> schedule,
 	    PopUpWindow window) {
 	this.hourComboBox = hourComboBox;

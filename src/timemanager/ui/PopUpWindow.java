@@ -102,7 +102,7 @@ public class PopUpWindow {
 	
 	button.setBounds(textAreaWidth - 50, (tableSpace + textAreaHeight + 85), 75, 30);
 	button.setVisible(true);
-	button.addActionListener(new ButtonListener(hourComboBox, minuteComboBox,
+	button.addActionListener(new AddButtonListener(hourComboBox, minuteComboBox,
 		amPmComboBox, textArea, schedule, this));
 	frame.add(button);
 	
