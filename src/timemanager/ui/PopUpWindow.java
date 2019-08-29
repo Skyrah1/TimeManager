@@ -62,9 +62,10 @@ public class PopUpWindow {
 	JButton deleteButton;
 	for (Entry<Date, String> entry : schedule.entrySet()){
 	    this.model.insertRow(count, new Object[]{dateToString(entry.getKey()), entry.getValue()});
-	    deleteButton = new JButton("X");
-	    deleteButtons.add(deleteButton);
-	    deleteButton.addActionListener(new DeleteButtonListener(this, schedule, entry));
+	    //deleteButton = new JButton("X");
+	    //deleteButtons.add(deleteButton);
+	    //deleteButton.addActionListener
+		//(new DeleteButtonListener(this, schedule, entry, deleteButton));
 	    System.out.printf("Added row: %s and %s\n", dateToString(entry.getKey()), entry.getValue());
 	    count++;
 	}
@@ -96,7 +97,7 @@ public class PopUpWindow {
 	table.getColumnModel().getColumn(0).setMaxWidth(50);
 	frame.add(table);
 	
-	updateDeleteButtons(rowHeight, 0, 0);
+	updateDeleteButtons(rowHeight, 0, 0, schedule);
 	
 	hourComboBox.setBounds(25, tableSpace + 25, 50, 20);
 	minuteComboBox.setBounds(100, tableSpace + 25, 50, 20);
@@ -118,18 +119,64 @@ public class PopUpWindow {
 	
     }
     
-    private void updateDeleteButtons(int rowHeight, int tableX, int tableY){
+    private void updateDeleteButtons(int rowHeight, int tableX, int tableY,
+				TreeMap<Date, String> schedule){
 	int index = 0;
+	int currentButtonY;
+	JButton deleteButton;
+	
 	for (JButton b : deleteButtons){
-	    b.setBounds(tableX, tableY + (rowHeight * index), 45, rowHeight);
-	    frame.add(b);
+	    b.setVisible(false);
+	    frame.remove(b);
+	    frame.revalidate();
+	    frame.repaint();
+	}
+	
+	deleteButtons.clear();
+	
+	for (Entry<Date, String> entry : schedule.entrySet()){
+	    deleteButton = new JButton("X");
+	    deleteButtons.add(deleteButton);
+	    deleteButton.addActionListener
+		(new DeleteButtonListener(this, schedule, entry, deleteButton));
+	    currentButtonY = tableY + (rowHeight * index);
+	    deleteButton.setBounds(tableX, currentButtonY, 45, rowHeight);
+	    frame.add(deleteButton);
+	    deleteButton.setVisible(true);
+	    frame.revalidate();
+	    frame.repaint();
 	    index++;
 	}
+	
+	System.out.printf("%s\n", deleteButtons.toString());
+	/*
+	for (JButton b : deleteButtons){
+	    frame.remove(b);
+	    //frame.revalidate();
+	    //frame.repaint();
+	}
+	//frame.repaint();
+	for (JButton b : deleteButtons){
+	    //frame.remove(b);
+	    currentButtonY = tableY + (rowHeight * index);
+	    b.setBounds(tableX, currentButtonY, 45, rowHeight);
+	    frame.add(b);
+	    b.setVisible(true);
+	    index++;
+	}*/
+	//System.out.printf("length: %d\n", deleteButtons.size());
     }
     
     public void showWindow(){
 	frame.setVisible(true);
     }
     
+    public JFrame getFrame(){
+	return frame;
+    }
+    
+    public ArrayList<JButton> getDeleteButtons(){
+	return deleteButtons;
+    }
     
 }
