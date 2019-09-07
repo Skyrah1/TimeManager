@@ -67,6 +67,7 @@ public class DisplayWindow {
 	
 	this.imageLabel.setText("jellyfish");
 	this.imageLabel.setBounds(imageX, imageY, imageWidth, imageHeight);
+	this.imageLabel.addMouseMotionListener(new DisplayMouseListener(this.frame));
 	
 	this.window.createWindow(schedule);
 	this.window.hideWindow();
@@ -91,7 +92,7 @@ public class DisplayWindow {
 	this.frame.setUndecorated(true);
 	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.frame.setBackground(new Color(0, 0, 0, 0));
-	this.frame.addMouseListener(new DisplayMouseListener());
+	
 	//icon = new ImageIcon(images.get(imageIndex));
 	//updateImage();
     }
@@ -119,5 +120,5 @@ public class DisplayWindow {
     public void openPopUpWindow(){
 	window.showWindow();
     }
-    
+
 }
