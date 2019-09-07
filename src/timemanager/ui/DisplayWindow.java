@@ -5,6 +5,7 @@
  */
 package timemanager.ui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -58,6 +59,7 @@ public class DisplayWindow {
 	
 	this.imageLabel = new JLabel();
 	this.imageLabel.setIcon(this.icon);
+	this.imageLabel.setOpaque(false);
 	this.icon.setImageObserver(imageLabel);
 	this.frame.add(imageLabel);
 	
@@ -67,7 +69,8 @@ public class DisplayWindow {
 	this.window.createWindow(schedule);
 	this.window.hideWindow();
 	this.textArea.setFont(font);
-	this.textArea.setBounds(textX, textY, 200, 18);
+	this.textArea.setBounds(textX, textY, 196, 32);
+	this.textArea.setEditable(false);
 	this.button.setFont(font);
 	this.button.setBounds((frameWidth/2) - 50, frameHeight-100, 100, 25);
 	this.button.addActionListener(new ActionListener(){
@@ -82,9 +85,10 @@ public class DisplayWindow {
 	this.frame.setBounds(frameX, frameY, frameWidth, frameHeight);
 	this.frame.setLayout(null);
 	//this.frame.setAlwaysOnTop(true);
-	this.frame.setFocusableWindowState(false);
-	//this.frame.setUndecorated(true);
+	this.frame.setFocusableWindowState(true);
+	this.frame.setUndecorated(true);
 	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.frame.setBackground(new Color(0, 0, 0, 0));
 	//icon = new ImageIcon(images.get(imageIndex));
 	//updateImage();
     }
