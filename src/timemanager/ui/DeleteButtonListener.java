@@ -20,10 +20,10 @@ import javax.swing.JButton;
  */
 public class DeleteButtonListener implements ActionListener{
     
-    final PopUpWindow window;
-    final TreeMap<Date, String> schedule;
-    final Entry<Date, String> entry;
-    final JButton deleteButton;
+    private final PopUpWindow window;
+    private final TreeMap<Date, String> schedule;
+    private final Entry<Date, String> entry;
+    private final JButton deleteButton;
     
     public DeleteButtonListener(PopUpWindow window, TreeMap<Date, String> schedule,
 				Entry<Date, String> entry, JButton deleteButton){

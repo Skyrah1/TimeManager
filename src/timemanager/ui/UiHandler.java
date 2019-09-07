@@ -15,8 +15,8 @@ import javax.swing.ImageIcon;
  */
 public class UiHandler {
     
-    final TreeMap<Date, String> schedule;
-    final DisplayWindow window;
+    private final TreeMap<Date, String> schedule;
+    private final DisplayWindow window;
     
     public UiHandler(String title, TreeMap<Date, String> schedule,
 		    ImageIcon icon){

@@ -29,15 +29,15 @@ import javax.swing.JTextArea;
  */
 public class DisplayWindow {
     
-    final JFrame frame;
-    final JTextArea textArea;
-    final Font font;
-    final PopUpWindow window;
-    final JButton button;
-    ArrayList<BufferedImage> images;
+    private final JFrame frame;
+    private final JTextArea textArea;
+    private final Font font;
+    private final PopUpWindow window;
+    private final JButton button;
+    private ArrayList<BufferedImage> images;
     private final ImageIcon icon;
     //private Image image;
-    final private JLabel imageLabel;
+    private final JLabel imageLabel;
     
     public DisplayWindow(String title, TreeMap<Date, String> schedule,
 			ImageIcon icon){

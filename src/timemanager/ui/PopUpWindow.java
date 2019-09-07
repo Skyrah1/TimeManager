@@ -23,18 +23,18 @@ import static timemanager.DateParser.dateToString;
  */
 public class PopUpWindow {
     
-    final JFrame frame;
-    final JComboBox hourComboBox;
-    final JComboBox minuteComboBox;
-    final JComboBox amPmComboBox;
-    final JTable table;
-    final DefaultTableModel model;
-    final JTextArea textArea;
-    final JButton button;
-    final String[] hours = ",1,2,3,4,5,6,7,8,9,10,11,12".split(",");
-    final String[] minutes;
-    final String[] amPm = {"", "AM", "PM"};
-    final ArrayList<JButton> deleteButtons;
+    private final JFrame frame;
+    private final JComboBox hourComboBox;
+    private final JComboBox minuteComboBox;
+    private final JComboBox amPmComboBox;
+    private final JTable table;
+    private final DefaultTableModel model;
+    private final JTextArea textArea;
+    private final JButton button;
+    private final String[] hours = ",1,2,3,4,5,6,7,8,9,10,11,12".split(",");
+    private final String[] minutes;
+    private final String[] amPm = {"", "AM", "PM"};
+    private final ArrayList<JButton> deleteButtons;
     
     public PopUpWindow(String title,  String[] headings, String buttonText){
 	this.minutes = new String[61];
