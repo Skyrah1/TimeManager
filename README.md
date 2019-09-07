@@ -10,6 +10,6 @@ The application reads from a CSV file that stores different activities and when 
 
 # To-do list
 - Update the interface to make it more user friendly
-- Make it so that the main window can be moved by the user using the mouse
+- Make it so that the main window can be moved by the user using the mouse (DONE)
 - Add more dynamic animation
 - Add sounds
