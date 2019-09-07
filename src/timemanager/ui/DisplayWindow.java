@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
@@ -89,6 +91,7 @@ public class DisplayWindow {
 	this.frame.setUndecorated(true);
 	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.frame.setBackground(new Color(0, 0, 0, 0));
+	this.frame.addMouseListener(new DisplayMouseListener());
 	//icon = new ImageIcon(images.get(imageIndex));
 	//updateImage();
     }
