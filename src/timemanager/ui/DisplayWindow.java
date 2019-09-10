@@ -33,7 +33,8 @@ public class DisplayWindow {
     private final JTextArea textArea;
     private final Font font;
     private final PopUpWindow window;
-    private final JButton button;
+    private final JButton popUpButton;
+    private final JButton okButton;
     private ArrayList<BufferedImage> images;
     private final ImageIcon icon;
     //private Image image;
@@ -52,11 +53,14 @@ public class DisplayWindow {
 	int imageY = 50;
 	int imageWidth = 200;
 	int imageHeight = 150;
+	int buttonLength = 100;
+	int buttonHeight = 25;
 	this.frame = new JFrame(title);
 	this.textArea = new JTextArea();
 	this.font = new Font("Arial", Font.PLAIN, 18);
 	this.window = new PopUpWindow("test2", new String[]{"Time", "Activity"}, "Submit");
-	this.button = new JButton("Pop-up");
+	this.popUpButton = new JButton("Pop-up");
+	this.okButton = new JButton("OK");
 	this.icon = icon;
 	
 	this.imageLabel = new JLabel();
@@ -74,17 +78,26 @@ public class DisplayWindow {
 	this.textArea.setFont(font);
 	this.textArea.setBounds(textX, textY, 196, 32);
 	this.textArea.setEditable(false);
-	this.button.setFont(font);
-	this.button.setBounds((frameWidth/2) - 50, frameHeight-100, 100, 25);
-	this.button.addActionListener(new ActionListener(){
+	this.popUpButton.setFont(font);
+	this.popUpButton.setBounds((frameWidth/2), frameHeight-100, buttonLength, buttonHeight);
+	this.popUpButton.addActionListener(new ActionListener(){
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		openPopUpWindow();
 	    }
 	    
 	});
+	this.okButton.setFont(font);
+	this.okButton.setBounds((frameWidth/2) - 100, frameHeight-100, buttonLength, buttonHeight);
+	this.okButton.addActionListener(new ActionListener(){
+	    @Override
+	    public void actionPerformed(ActionEvent e){
+		textArea.setText("");
+	    }
+	});
 	this.frame.add(textArea);
-	this.frame.add(button);
+	this.frame.add(popUpButton);
+	this.frame.add(okButton);
 	this.frame.setBounds(frameX, frameY, frameWidth, frameHeight);
 	this.frame.setLayout(null);
 	//this.frame.setAlwaysOnTop(true);
@@ -115,6 +128,14 @@ public class DisplayWindow {
     
     public void hideWindow(){
 	frame.setVisible(false);
+    }
+    
+    public void toggleOkButton(){
+	if (okButton.isVisible()){
+	    okButton.setVisible(false);
+	} else {
+	    okButton.setVisible(true);
+	}
     }
     
     public void openPopUpWindow(){
