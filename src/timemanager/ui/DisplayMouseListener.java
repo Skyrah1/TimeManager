@@ -35,7 +35,7 @@ public class DisplayMouseListener implements MouseMotionListener {
 	int y = mousePoint.y;
 	int width = frame.getWidth();
 	int height = frame.getHeight();
-	frame.setBounds(x - (width / 3), y - (height / 3), width, height);
+	frame.setBounds(x - (width / 2), y - (height / 3), width, height);
 	frame.repaint();
     }
 
